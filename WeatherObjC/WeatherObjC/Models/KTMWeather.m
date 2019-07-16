@@ -10,4 +10,25 @@
 
 @implementation KTMWeather
 
+
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary cityName:(NSString *)cityName {
+    
+    NSString *iconName = [dictionary[@"weather"] objectAtIndex:0][@"icon"];
+    UIImage *icon = [UIImage imageNamed:iconName];
+    
+    NSNumber *temp = dictionary[@"main"][@"temp"];
+    
+    return [self initWithName:cityName icon:icon temp:temp];
+}
+
+- (instancetype)initWithName:(NSString *)cityName icon:(UIImage *)icon temp:(NSNumber *)temp {
+    self = [super init];
+    if (self) {
+        _cityName = cityName;
+        _icon = icon;
+        _temp = temp;
+    }
+    return self;
+}
+
 @end

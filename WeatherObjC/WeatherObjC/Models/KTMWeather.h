@@ -7,10 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KTMWeather : NSObject
+
+@property NSString *cityName;
+@property NSNumber *temp;
+@property UIImage *icon;
+
+- (instancetype)initWithDictionary: (NSDictionary *)dictionary cityName:(NSString *)cityName;
+- (instancetype)initWithName:(NSString *)cityName icon:(UIImage *)icon temp:(NSNumber *)temp;
 
 @end
 
