@@ -1,14 +1,14 @@
 //
-//  IIIWeatherViewController.m
+//  KTMWeatherViewController.m
 //  WeatherObjC
 //
 //  Created by Ilgar Ilyasov on 3/26/19.
 //  Copyright © 2019 Lambda School. All rights reserved.
 //
 
-#import "IIIWeatherViewController.h"
+#import "KTMWeatherViewController.h"
 
-@interface IIIWeatherViewController ()
+@interface KTMWeatherViewController ()
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UILabel *cityNameLabel;
@@ -16,7 +16,7 @@
 
 @end
 
-@implementation IIIWeatherViewController
+@implementation KTMWeatherViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
