@@ -7,6 +7,8 @@
 //
 
 #import "KTMWeatherViewController.h"
+#import "KTMWeatherCollectionViewCell.h"
+#import "KTMWeather.h"
 
 @interface KTMWeatherViewController ()
 
@@ -18,19 +20,65 @@
 
 @implementation KTMWeatherViewController
 
+- (void)updateViews {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[self collectionView] reloadData];
+        _cityNameLabel.text = _weatherController.cityName;
+    });
+}
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    _searchBar.delegate = self;
+    _collectionView.delegate = self;
+    _collectionView.dataSource = self;
+    
+    
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    
+    if (self) {
+        _weatherController = [[KTMWeatherController alloc] init];
+    }
+    
+    return self;
 }
-*/
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
+    if (self) {
+        _weatherController = [[KTMWeatherController alloc] init];
+    }
+    
+    return self;
+}
+
+- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.weatherController.forecasts.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    KTMWeatherCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"WeatherCell" forIndexPath:indexPath];
+    
+    KTMWeather *weather = self.weatherController.forecasts[indexPath.item];
+    cell.weather = weather;
+    [cell updateViews];
+    
+    return cell;
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [self.weatherController fetchForecast:searchBar.text completionBlock:^(NSArray * _Nonnull forecasts, NSError * _Nonnull error) {
+        [self updateViews];
+    }];
+    
+}
+
+
 
 @end

@@ -61,6 +61,8 @@
                                             <constraint firstAttribute="trailing" secondItem="H0L-BW-bM6" secondAttribute="trailing" id="l1h-hm-AXR"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="imageView" destination="H0L-BW-bM6" id="nUn-zI-nZG"/>
+                                            <outlet property="tempLabel" destination="hq6-BJ-c95" id="gQQ-Ew-Zdw"/>
                                             <outlet property="temperatureLabel" destination="hq6-BJ-c95" id="YmD-Uh-AB6"/>
                                             <outlet property="weatherImageView" destination="H0L-BW-bM6" id="dJi-Gd-BCd"/>
                                         </connections>

@@ -16,6 +16,7 @@ typedef void (^KTMFetchForecastCompletionBlock)(NSArray *, NSError *);
 @interface KTMWeatherController : NSObject
 
 @property NSArray *forecasts;
+@property NSString *cityName;
 
 
 - (void)fetchForecast:(NSString *)zipcode

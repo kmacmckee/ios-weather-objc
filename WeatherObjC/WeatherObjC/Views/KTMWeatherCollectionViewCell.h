@@ -8,9 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@class KTMWeather;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KTMWeatherCollectionViewCell : UICollectionViewCell
+
+- (void)updateViews;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+
+@property (weak, nonatomic) IBOutlet UILabel *tempLabel;
+
+
+@property KTMWeather *weather;
+
 
 @end
 

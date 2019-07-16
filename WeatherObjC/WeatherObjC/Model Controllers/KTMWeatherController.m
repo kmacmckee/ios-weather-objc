@@ -11,10 +11,8 @@
 
 @implementation KTMWeatherController
 
-static NSString *baseURLString = @"api.openweathermap.org/data/2.5/forecast";
-
-static NSString *apiKey = @"ec99ca74f04730540bf82f489d4718a9";
-
+static NSString const *baseURLString = @"https://api.openweathermap.org/data/2.5/forecast";
+static NSString const *apiKey = @"ec99ca74f04730540bf82f489d4718a9";
 
 - (instancetype)init {
     self = [super init];
@@ -29,7 +27,7 @@ static NSString *apiKey = @"ec99ca74f04730540bf82f489d4718a9";
 - (void)fetchForecast:(NSString *)zipcode
       completionBlock:(KTMFetchForecastCompletionBlock)completionBlock {
     
-    NSURL *baseURL = [NSURL URLWithString:baseURLString];
+    NSURL *baseURL = [NSURL URLWithString: baseURLString];
     
     NSURLComponents *urlComponents = [NSURLComponents componentsWithURL:baseURL resolvingAgainstBaseURL:YES];
     
@@ -70,6 +68,7 @@ static NSString *apiKey = @"ec99ca74f04730540bf82f489d4718a9";
             [forecasts addObject:weather];
             
             self.forecasts = forecasts;
+            self.cityName = cityName;
         }
         
         completionBlock(forecasts, nil);

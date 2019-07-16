@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KTMWeatherController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface KTMWeatherViewController : UIViewController
+@interface KTMWeatherViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate>
+
+@property KTMWeatherController *weatherController;
+
 
 @end
 
